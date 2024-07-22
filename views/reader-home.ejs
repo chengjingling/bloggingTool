@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reader - Home</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <ul>
+        <li><a href="/login" class="navElementsRight">Logout</a></li>
+        <li class="navElementsRight"><img src="/user.png" class="userIcon"> <%= user_username %></li>
+    </ul>
+    <div>
+        <h1>Reader - Home</h1>
+        <h2>Published articles</h2>
+        <table>
+            <tr>
+                <th>Published</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Likes</th>
+                <th></th>
+            </tr>
+            <% data.forEach(entry => { %>
+                <tr>
+                    <td><%= entry.article_published %></td>
+                    <td><%= entry.article_title %></td>
+                    <td><%= entry.user_name %></td>
+                    <td><%= entry.article_likes %></td>
+                    <td>
+                        <form action="reader/<%= entry.article_id %>">
+                            <button type="submit" class="actionButton">View</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </table>
+    </div><br><br>
+</body>
+</html>

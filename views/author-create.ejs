@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Draft</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <ul>
+        <li><a href="/author" class="navElementsLeft">Back</a></li>
+        <li><a href="/login" class="navElementsRight">Logout</a></li>
+        <li><a href="/author/settings" class="navElementsRight">Settings</a></li>
+        <li class="navElementsRight"><img src="/user.png" class="userIcon"> <%= user_username %></li>
+    </ul>
+    <div>
+        <h1>New Draft</h1>
+        <form action="create-draft" method="POST">
+            <h2>Title:</h2>
+            <input type="text" name="title" class="inputText" required /><br>
+            <h2>Subtitle:</h2>
+            <input type="text" name="subtitle" class="inputText" required /><br>
+            <h2>Text:</h2>
+            <textarea name="text" required></textarea><br><br>
+            <button type="submit" class="actionButton">Submit changes</button>
+        </form>
+    </div><br><br>
+</body>
+</html>

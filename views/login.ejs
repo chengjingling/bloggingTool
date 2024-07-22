@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Register</h2>
+        <form action="/login/register" method="POST">
+            <input type="radio" id="author" name="type" value="author" required />
+            <label for="author">Author</label>
+            <input type="radio" id="reader" name="type" value="reader" required />
+            <label for="reader">Reader</label><br><br>
+            <div class="form-group">
+                <input type="text" name="name" placeholder="Name" required /><br><br>
+                <input type="text" name="username" placeholder="Username" required /><br><br>
+                <input type="password" name="password" placeholder="Password" required /><br><br>
+                <div id="authorFields">
+                    <input type="text" name="blog_title" placeholder="Blog title" /><br><br>
+                    <input type="text" name="blog_subtitle" placeholder="Blog subtitle" /><br><br>
+                </div>
+            </div>
+            <p class="message"><%= registerMessage %></p>
+            <button type="submit" class="actionButton">Register</button>
+        </form>
+        <h2>Login</h2>
+        <form action="/login/check-credentials" method="POST">
+            <div class="form-group">
+                <input type="text" name="username" placeholder="Username" required /><br><br>
+                <input type="password" name="password" placeholder="Password" required /><br><br>
+            </div>
+            <p class="message"><%= loginMessage %></p>
+            <button type="submit" class="actionButton">Login</button>
+        </form>
+    </div>
+    <script>
+        const authorRadioButton = document.getElementById("author");
+        const readerRadioButton = document.getElementById("reader");
+        const authorFieldsContainer = document.getElementById("authorFields");
+        const blogTitleField = document.querySelector('input[name="blog_title"]');
+        const blogSubtitleField = document.querySelector('input[name="blog_subtitle"]');
+        authorRadioButton.addEventListener("change", function () {
+            if (authorRadioButton.checked) {
+                authorFieldsContainer.style.display = "block";
+                blogTitleField.required = true;
+                blogSubtitleField.required = true;
+            }
+        });
+        readerRadioButton.addEventListener("change", function () {
+            if (readerRadioButton.checked) {
+                authorFieldsContainer.style.display = "none";
+                blogTitleField.required = false;
+                blogSubtitleField.required = false;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <% data.forEach(entry => { %>
+        <title>Edit: <%= entry.article_title %></title>
+    <% }) %>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <ul>
+        <li><a href="/author" class="navElementsLeft">Back</a></li>
+        <li><a href="/login" class="navElementsRight">Logout</a></li>
+        <li><a href="/author/settings" class="navElementsRight">Settings</a></li>
+        <li class="navElementsRight"><img src="/user.png" class="userIcon"> <%= user_username %></li>
+    </ul>
+    <div>
+        <% data.forEach(entry => { %>
+            <h1>Edit: <%= entry.article_title %></h1>
+            <form action="/author/update-draft/<%= entry.article_id %>" method="POST">
+                <h2>Date created:</h2>
+                <p name="created"><%= entry.article_created %></p>
+                <h2>Date last modified:</h2>
+                <p name="modified"><%= entry.article_modified %></p>
+                <h2>Title:</h2>
+                <input type="text" name="title" value="<%= entry.article_title %>" class="inputText" required /><br>
+                <h2>Subtitle:</h2>
+                <input type="text" name="subtitle" value="<%= entry.article_subtitle %>" class="inputText" required /><br>
+                <h2>Text:</h2>
+                <textarea name="text" required><%= entry.article_text %></textarea><br><br>
+                <button type="submit" class="actionButton">Submit changes</button>
+            </form>
+        <% }) %>
+    </div><br><br>
+</body>
+</html>

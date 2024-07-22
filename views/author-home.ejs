@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Author - Home</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <ul>
+        <li><a href="/login" class="navElementsRight">Logout</a></li>
+        <li><a href="/author/settings" class="navElementsRight">Settings</a></li>
+        <li class="navElementsRight"><img src="/user.png" class="userIcon"> <%= user_username %></li>
+    </ul>
+    <div>
+        <h1>Author - Home</h1>
+        <% titleData.forEach(entry => { %>
+            <p>Author name: <%= user_name %></p>
+            <p>Blog title: <%= entry.blog_title %></p>
+            <p>Blog subtitle: <%= entry.blog_subtitle %></p>
+        <% }) %>
+        <h2>Published articles</h2>
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Published</th>
+                <th>Likes</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <% publishData.forEach(entry => { %>
+                <tr>
+                    <td><%= entry.article_title %></td>
+                    <td><%= entry.article_published %></td>
+                    <td><%= entry.article_likes %></td>
+                    <td>
+                        <form action="reader/<%= entry.article_id %>">
+                            <button type="submit" class="actionButton">View</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="author/delete/<%= entry.article_id %>">
+                            <button type="submit" class="actionButton">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </table>
+        <h2>Draft articles</h2>
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Created</th>
+                <th>Modified</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            <% draftData.forEach(entry => { %>
+                <tr>
+                    <td><%= entry.article_title %></td>
+                    <td><%= entry.article_created %></td>
+                    <td><%= entry.article_modified %></td>
+                    <td>
+                        <form action="author/publish/<%= entry.article_id %>" method="POST">
+                            <button type="submit" class="actionButton">Publish</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="author/edit/<%= entry.article_id %>">
+                            <button type="submit" class="actionButton">Edit</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="author/delete/<%= entry.article_id %>">
+                            <button type="submit" class="actionButton">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </table><br>
+        <form action="author/create">
+            <button type="submit" class="actionButton">Create new draft</button>
+        </form>
+    </div><br><br>
+</body>
+</html>
